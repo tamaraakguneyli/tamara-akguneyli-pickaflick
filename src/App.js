@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage";
 import "./App.scss";
 
-function App() {
+export default function App() {
   return (
     // <BrowserRouter>
     //   <Routes>
@@ -11,7 +11,7 @@ function App() {
     //     </Routes>
     //   </BrowserRouter>
     <Header />
+    <HomePage />
   );
 }
 
-export default App;
