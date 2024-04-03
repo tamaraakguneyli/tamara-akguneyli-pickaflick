@@ -1,0 +1,11 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.content {
+  @include flex-container(row, space-between, center);
+  background-color: $secondary-color;
+  width: 60%;
+  height: 10rem;
+  padding: 1rem 1rem;
+  border-radius: 15px;
+}

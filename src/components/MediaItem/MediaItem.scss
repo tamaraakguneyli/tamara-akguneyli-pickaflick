@@ -1,0 +1,8 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.item {
+  background-color: $primary-color;
+  width: 18%;
+  height: 8rem;
+}
