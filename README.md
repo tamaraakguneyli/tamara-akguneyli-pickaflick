@@ -68,7 +68,7 @@ Mimic a registation page
 Mimic a login page
 ![](login-page.jpg)
 
-This page allows you to see all movies/series options, it also shows up to date top 3 movies/series. You can also click a button to add speific movies/series to your watchlist on your profile
+This page allows you to see all movies/series options, it also shows up to date top 3 movies/series that update on a daily basis. You can also click a button to add speific movies/series to your watchlist on your profile
 ![](home-page.jpg)
 
 This page allows you to see your watchlist along with adding/viewing reviews to specific movies/series
