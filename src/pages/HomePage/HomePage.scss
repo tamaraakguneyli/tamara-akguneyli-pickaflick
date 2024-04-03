@@ -1,2 +1,26 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.home-layout {
+  @include flex-container(column, space-around, flex-start);
+  @include container;
+
+  &__header {
+    @include flex-container(row, flex-start, normal);
+    width: 100%;
+    margin-top: 3rem;
+
+    &:first-child {
+      margin-top: 2rem;
+    }
+  }
+
+  &__title {
+    color: $text-color;
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
