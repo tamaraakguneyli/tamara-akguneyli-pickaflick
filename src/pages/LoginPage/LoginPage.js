@@ -43,7 +43,7 @@ export default function LoginPage() {
       <p className="login__register">
         Need an account?{" "}
         <Link to="/register" className="login__link">
-          Sign up
+          Register Here
         </Link>
       </p>
     </main>

@@ -81,7 +81,7 @@ This is a nice to have page where it will generate a rnadom movie/series for you
 
 Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
 
-![](drawsql.png)
+![](mysql-diagram.png)
 
 ### Endpoints
 
@@ -197,56 +197,79 @@ GET /trending/tv/day (get top 3 trending movies from today)
             "vote_average": 7.231,
             "vote_count": 1044
 
-DATABASE END POINTS
+MY API END POINTS
 
-GET /mediaItem/:id (get all reviews from an individual media item)
+GET /watchlist (get each users watchlist on their profile)
 
-[
 {
 "id": 1,
+"mediaItems_id": "",
 "user_id": "",
-"username": "",
-"comment": "",
-"timestamp": ""
-},
-{
-"id": 2,
-"user_id": "",
-"username": "",
-"review": "",
-"timestamp": ""
-},
-...
-]
-
-POST /mediaItem/:id/review (post a review for an individual media item)
-
-{
-"user_id": ,
+"in_watchlist": "",
+"watched": "",
 "review": ""
 }
 
-NICE TO HAVE ENDPOINTS - DATABASE
-
-POST /users/register (add a user account)
+POST /watchlist (add movies to your watchlist)
 
 {
-"id": ,
-"username": "",
-"email": ""
+"id": 1,
+"mediaItems_id": "",
+"user_id": "",
+"in_watchlist": "",
+"watched": "",
+"review": ""
 }
 
-POST /users/login (login a user account)
+POST /mediaItem (add movies to your watchlist)
 
 {
-"id": ,
-"username": "",
-"email": ""
+"id": 1,
+"title": "",
+"genre": "",
+"release_date": "",
+"overview": "",
+"poster_url": ""
+}
+
+PUT /watchlist/:watchListId (updating the watchlist tso the media item is not in it anymore, can also use it to update the watched section and adding a review)
+
+{
+"id": 1,
+"mediaItems_id": "",
+"user_id": "",
+"in_watchlist": "",
+"watched": "",
+"review": ""
+}
+
+GET /watchlist/:mediaItemId (get all info for individual movies)
+
+{
+"id": 1,
+"title": "",
+"genre": "",
+"release_date": "",
+"overview": "",
+"poster_url": ""
+}
+
+DELETE /watchlist/:watchListId (delete a review from a specific user for a movie/series)
+
+{
+"id": 1,
+"mediaItems_id": "",
+"user_id": "",
+"in_watchlist": "",
+"watched": "",
+"review": ""
 }
 
 ### Auth
 
 Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+
+-JWT auth
 
 I will have one fake user to mimic the look of having a user profile - being able to log in/out will be added as a nice to have.
 

@@ -84,7 +84,9 @@ export default function HomePage() {
         </div>
         <MediaContent />
       </div>
-      <button onClick={handleLogout}>Log out</button>
+      <button onClick={handleLogout} className="home-layout__logout">
+        Log out
+      </button>
     </main>
   );
 }
