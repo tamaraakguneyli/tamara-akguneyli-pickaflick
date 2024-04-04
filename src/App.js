@@ -9,7 +9,6 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />

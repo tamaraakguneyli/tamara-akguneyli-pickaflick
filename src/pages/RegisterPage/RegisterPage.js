@@ -3,6 +3,7 @@ import "./RegisterPage.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import logo from "../../assets/images/logo/Logo.svg";
 
 export default function RegisterPage() {
   const [error, setError] = useState("");
@@ -25,6 +26,11 @@ export default function RegisterPage() {
 
   return (
     <main className="register-page">
+      <img
+        className="register-page__logo"
+        src={logo}
+        alt="pickaflick coral logo"
+      />
       <form className="register" onSubmit={handleSubmit}>
         <h1 className="register__title">Register</h1>
         <Input type="text" name="username" label="Username" />

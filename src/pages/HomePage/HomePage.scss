@@ -42,11 +42,19 @@
     border-radius: 5px;
   }
 
-  &__logout {
-    color: $accent-color;
-    background-color: $primary-color;
-    padding: 0.5rem 0.5rem;
-    font-weight: 600;
-    border: none;
+  &__top-media {
+    @include flex-container(row, flex-start, normal);
+    @include container;
+  }
+
+  &__top-title {
+    margin: 2rem 0 1rem 0;
+    width: 40%;
+  }
+
+  &__top-blocks {
+    @include flex-container(column, center, center);
+    margin-right: 1rem;
+    width: 39%;
   }
 }

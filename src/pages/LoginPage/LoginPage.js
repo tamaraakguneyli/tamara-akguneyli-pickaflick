@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import "./LoginPage.scss";
+import logo from "../../assets/images/logo/Logo.svg";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -33,6 +34,11 @@ export default function LoginPage() {
   };
   return (
     <main className="login-page">
+      <img
+        className="login-page__logo"
+        src={logo}
+        alt="pickaflick coral logo"
+      />
       <form className="login" onSubmit={handleSubmit}>
         <h1 className="login__title">Log in</h1>
         <Input type="text" name="username" label="Username" />

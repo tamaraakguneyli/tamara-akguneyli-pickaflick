@@ -6,6 +6,11 @@
   background-color: $background-color;
   min-height: 100vh;
   padding: 1rem;
+
+  &__logo {
+    width: 40%;
+    padding-bottom: 3rem;
+  }
 }
 
 .register {

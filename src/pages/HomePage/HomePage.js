@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./HomePage.scss";
 import MediaContent from "../../components/MediaContent/MediaContent";
 import starIcon from "../../assets/images/icons/star-icon.png";
+import topMovieHeader from "../../assets/images/icons/top-movies-icon.png";
+import topSeriesHeader from "../../assets/images/icons/top-series-icon.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import TopMedia from "../../components/TopMedia/TopMedia";
+import Header from "../../components/Header/Header";
 const API = process.env.REACT_APP_API;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -12,6 +16,8 @@ export default function HomePage() {
   const [failedAuth, setFailedAuth] = useState(false);
   const [movies, setMovies] = useState(null);
   const [series, setSeries] = useState(null);
+  const [topMovies, setTopMovies] = useState(null);
+  const [topSeries, setTopSeries] = useState(null);
 
   const getMedia = async () => {
     try {
@@ -24,6 +30,16 @@ export default function HomePage() {
         `${API}/3/tv/top_rated${API_KEY}`
       );
       setSeries(seriesData.results);
+
+      const { data: topMoviesData } = await axios.get(
+        `${API}/3/trending/movie/day${API_KEY}`
+      );
+      setTopMovies(topMoviesData.results.slice(0, 3));
+
+      const { data: topSeriesData } = await axios.get(
+        `${API}/3/trending/tv/day${API_KEY}`
+      );
+      setTopSeries(topSeriesData.results.slice(0, 3));
     } catch (error) {
       console.log("Error fetching media data", error);
     }
@@ -87,30 +103,48 @@ export default function HomePage() {
   }
 
   return (
-    <main>
-      <div className="home-layout">
-        <div className="home-layout__header">
-          <h1 className="home-layout__title">Movies</h1>
-          <img
-            src={starIcon}
-            alt="coral star icon"
-            className="home-layout__icon"
-          />
+    <>
+      <Header logOut={handleLogout} />
+      <main>
+        <div className="home-layout">
+          <div className="home-layout__header">
+            <h1 className="home-layout__title">Movies</h1>
+            <img
+              src={starIcon}
+              alt="coral star icon"
+              className="home-layout__icon"
+            />
+          </div>
+          <MediaContent media={movies} />
+          <div className="home-layout__header">
+            <h1 className="home-layout__title">Series</h1>
+            <img
+              src={starIcon}
+              alt="coral star icon"
+              className="home-layout__icon"
+            />
+          </div>
+          <MediaContent media={series} />
         </div>
-        <MediaContent media={movies} />
-        <div className="home-layout__header">
-          <h1 className="home-layout__title">Series</h1>
-          <img
-            src={starIcon}
-            alt="coral star icon"
-            className="home-layout__icon"
-          />
-        </div>
-        <MediaContent media={series} />
-      </div>
-      <button onClick={handleLogout} className="home-layout__logout">
-        Log out
-      </button>
-    </main>
+        <section className="home-layout__top-media">
+          <div className="home-layout__top-blocks">
+            <img
+              src={topMovieHeader}
+              alt="top movies title"
+              className="home-layout__top-title"
+            />
+            <TopMedia media={topMovies} />
+          </div>
+          <div className="home-layout__top-blocks">
+            <img
+              src={topSeriesHeader}
+              alt="top movies title"
+              className="home-layout__top-title"
+            />
+            <TopMedia media={topSeries} />
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

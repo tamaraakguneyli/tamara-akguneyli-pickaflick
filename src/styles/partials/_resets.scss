@@ -9,7 +9,8 @@
 
 body,
 ::placeholder,
-button {
+button,
+input {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", "sans-serif";
@@ -17,4 +18,8 @@ button {
 
 body {
   background-color: $background-color;
+}
+
+a {
+  text-decoration: none;
 }

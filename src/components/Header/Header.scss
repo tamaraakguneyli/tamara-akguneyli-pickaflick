@@ -17,10 +17,16 @@
   }
 
   &__page {
-    padding: 1rem, 1rem;
+    padding: 0.5rem;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     color: $text-color;
+
+    &--active {
+      font-weight: 600;
+      background-color: $primary-color;
+      border-radius: 5px;
+    }
   }
 
   &__user-icon {
@@ -29,5 +35,14 @@
 
   &__account {
     @include flex-container(row, flex-end, center);
+  }
+  &__logout {
+    color: $accent-color;
+    background-color: $primary-color;
+    padding: 0.5rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    margin-left: 1rem;
   }
 }

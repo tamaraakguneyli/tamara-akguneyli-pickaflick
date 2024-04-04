@@ -7,7 +7,7 @@ export default function MediaItem({ poster }) {
       <img
         src={`https://image.tmdb.org/t/p/original${poster}`}
         alt="video poster"
-        className="item"
+        className="item item--top-media"
       ></img>
     </>
   );
