@@ -4,10 +4,34 @@ import MediaContent from "../../components/MediaContent/MediaContent";
 import starIcon from "../../assets/images/icons/star-icon.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+const API = process.env.REACT_APP_API;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function HomePage() {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [movies, setMovies] = useState(null);
+  const [series, setSeries] = useState(null);
+
+  const getMedia = async () => {
+    try {
+      const { data: moviesData } = await axios.get(
+        `${API}/3/movie/top_rated${API_KEY}`
+      );
+      setMovies(moviesData.results);
+
+      const { data: seriesData } = await axios.get(
+        `${API}/3/tv/top_rated${API_KEY}`
+      );
+      setSeries(seriesData.results);
+    } catch (error) {
+      console.log("Error fetching media data", error);
+    }
+  };
+
+  useEffect(() => {
+    getMedia();
+  }, []);
 
   useEffect(() => {
     const loadData = async () => {
@@ -73,7 +97,7 @@ export default function HomePage() {
             className="home-layout__icon"
           />
         </div>
-        <MediaContent />
+        <MediaContent media={movies} />
         <div className="home-layout__header">
           <h1 className="home-layout__title">Series</h1>
           <img
@@ -82,7 +106,7 @@ export default function HomePage() {
             className="home-layout__icon"
           />
         </div>
-        <MediaContent />
+        <MediaContent media={series} />
       </div>
       <button onClick={handleLogout} className="home-layout__logout">
         Log out

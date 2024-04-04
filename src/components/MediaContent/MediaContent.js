@@ -3,14 +3,16 @@ import "./MediaContent.scss";
 import MediaItem from "../MediaItem/MediaItem";
 import nextIcon from "../../assets/images/icons/next-icon.png";
 
-export default function MediaContent() {
+export default function MediaContent({ media }) {
   return (
     <section className="content">
-      <MediaItem />
-      <MediaItem />
-      <MediaItem />
-      <MediaItem />
+      {media &&
+        media.map((item) => (
+          <MediaItem key={item.id} poster={item.poster_path} />
+        ))}
       <img className="content__icon" src={nextIcon} alt="coral next icon" />
     </section>
   );
+  {
+  }
 }
