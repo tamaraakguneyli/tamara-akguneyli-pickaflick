@@ -23,4 +23,22 @@
     width: 1.5rem;
     height: 1.5rem;
   }
+
+  &__login-section {
+    @include flex-container(column, center, center);
+    margin-top: 2rem;
+  }
+
+  &__login {
+    color: $text-color;
+  }
+
+  &__link {
+    color: $text-color;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: $primary-color;
+    padding: 1rem;
+    border-radius: 5px;
+  }
 }

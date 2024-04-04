@@ -1,16 +1,18 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 .field {
-    display: flex;
-    flex-direction: column;
+  @include flex-container(column, baseline, normal);
 
-    &__label {
-        margin-bottom: 0.5rem;
-    }
+  &__label {
+    margin-bottom: 0.5rem;
+  }
 
-    &__input {
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        font-size: inherit;
-    }
+  &__input {
+    margin-bottom: 1rem;
+    border: 1px solid $text-color;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: inherit;
+  }
 }
