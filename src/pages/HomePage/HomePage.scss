@@ -1,6 +1,11 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+.test {
+  color: white;
+  font-size: 2rem;
+}
+
 .home-layout {
   @include flex-container(column, space-around, flex-start);
   @include container;

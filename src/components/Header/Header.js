@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 export default function Header({ logOut }) {
   const location = useLocation();
   const { pathname } = location;
-  console.log("Current Pathname:", pathname);
 
   return (
     <header className="header">
