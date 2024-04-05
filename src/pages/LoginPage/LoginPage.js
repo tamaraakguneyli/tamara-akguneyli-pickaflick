@@ -7,19 +7,8 @@ import logo from "../../assets/images/logo/Logo.svg";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
-  const [enable, setEnable] = useState(false);
 
   const navigate = useNavigate();
-
-  const handleEnable = async (event) => {
-    event.preventDefault();
-
-    setEnable(true);
-    navigate("/loading");
-    setTimeout(() => {
-      navigate("/");
-    }, 1500);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +23,10 @@ export default function LoginPage() {
 
       localStorage.setItem("token", response.data.token);
 
-      navigate("/");
+      navigate("/loading");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error);
@@ -54,9 +46,7 @@ export default function LoginPage() {
         <h1 className="login__title">Log in</h1>
         <Input type="text" name="username" label="Username" />
         <Input type="password" name="password" label="Password" />
-        <button onClick={handleEnable} className="login__button">
-          Log in
-        </button>
+        <button className="login__button">Log in</button>
         {error && <div className="login__message">{error}</div>}
       </form>
       <p className="login__register">
