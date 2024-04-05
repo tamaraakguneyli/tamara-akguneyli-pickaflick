@@ -3,7 +3,7 @@
 
 .test {
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .home-layout {
@@ -60,6 +60,6 @@
   &__top-blocks {
     @include flex-container(column, center, center);
     margin-right: 1rem;
-    width: 39%;
+    width: 44.5%;
   }
 }

@@ -1,37 +1,43 @@
 import React from "react";
-import "./MediaModal.scss";
 import Modal from "react-modal";
+import "./MediaModal.scss";
 
-export default function MediaModal({ poster, modalIsOpen, handleCloseModal }) {
+export default function MediaModal({ media, modalIsOpen, handleCloseModal }) {
+  console.log("Media:", media);
   return (
-    <>
-      <Modal
-        isOpen={modalIsOpen}
-        ariaHideApp={false}
-        contentLabel="onRequestClose Example"
-        onRequestClose={handleCloseModal}
-        className="modal"
-        overlayClassName="Overlay"
-      >
-        <div className="modal__icon">
+    <Modal
+      isOpen={modalIsOpen}
+      ariaHideApp={false}
+      contentLabel="Media Modal"
+      onRequestClose={handleCloseModal}
+      className="modal"
+      overlayClassName="Overlay"
+    >
+      {media && (
+        <div className="modal__content">
           <img
-            onClick={handleCloseModal}
-            src={`https://image.tmdb.org/t/p/original${poster}`}
-            alt=""
-            className="modal__close"
+            src={`https://image.tmdb.org/t/p/original${media.poster_path}`}
+            alt={media.title}
+            className="modal__poster"
           />
-        </div>
-        <div className="modal__container">
-          <div className="modal__wrap">
-            <h3 className="modal__title">Delete</h3>
+          <div className="modal__container">
+            <h2 className="modal__title">
+              {media.title}
+              {media.name}
+            </h2>
+            <p className="modal__overview">{media.overview}</p>
+            <p className="modal__overview">
+              Release Date: {media.release_date} {media.first_air_date}
+            </p>
           </div>
-          <div className="modal__btn">
-            <button className="modal__cancel" onClick={handleCloseModal}>
-              cancel
+          <div className="modal__footer">
+            <button className="modal__close">Add To Watchlist</button>
+            <button className="modal__close" onClick={handleCloseModal}>
+              Close
             </button>
           </div>
         </div>
-      </Modal>
-    </>
+      )}
+    </Modal>
   );
 }

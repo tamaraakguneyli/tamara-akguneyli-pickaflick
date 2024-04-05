@@ -2,9 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .item {
-  background-color: $primary-color;
-  width: 22%;
   height: 10rem;
+
+  &:last-child {
+    padding-right: 1rem;
+  }
 
   &--top-media {
     width: 100%;

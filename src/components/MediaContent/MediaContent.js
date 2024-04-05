@@ -8,8 +8,8 @@ export default function MediaContent({ media }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
 
-  const handleOpenModal = (media) => {
-    setSelectedMedia(media);
+  const handleOpenModal = (eachMedia) => {
+    setSelectedMedia(eachMedia);
     setModalIsOpen(true);
   };
 

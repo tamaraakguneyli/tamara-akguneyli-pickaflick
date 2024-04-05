@@ -9,6 +9,7 @@ import axios from "axios";
 import TopMedia from "../../components/TopMedia/TopMedia";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const API = process.env.REACT_APP_API;
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -21,8 +22,7 @@ export default function HomePage() {
   const [topMovies, setTopMovies] = useState(null);
   const [topSeries, setTopSeries] = useState(null);
   const { type, mediaId } = useParams();
-  const [eachMovie, setEachMovie] = useState(null);
-  const [eachSeries, setEachSeries] = useState(null);
+  const [_eachMedia, setEachMedia] = useState(null);
 
   const getMedia = async () => {
     try {
@@ -56,10 +56,10 @@ export default function HomePage() {
       const { data } = response;
 
       if (type === "movie") {
-        setEachMovie(data);
+        setEachMedia(data);
         console.log("Each Movie Data:", data);
       } else if (type === "tv") {
-        setEachSeries(data);
+        setEachMedia(data);
         console.log("Each Series Data:", data);
       }
     } catch (error) {
@@ -125,7 +125,7 @@ export default function HomePage() {
   if (!user) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loader />
       </main>
     );
   }
@@ -134,12 +134,6 @@ export default function HomePage() {
     <>
       <Header logOut={handleLogout} />
       <main>
-        {eachSeries && (
-          <div className="test">
-            <h2>{eachSeries.name}</h2>
-            <p>{eachSeries.overview}</p>
-          </div>
-        )}
         <div className="home-layout">
           <div className="home-layout__header">
             <h1 className="home-layout__title">Movies</h1>

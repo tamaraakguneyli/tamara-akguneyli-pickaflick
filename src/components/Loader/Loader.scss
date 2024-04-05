@@ -1,0 +1,64 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.loader {
+  background-color: $background-color;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5;
+    position: relative;
+    height: 100dvh;
+  }
+
+  &__heading {
+    color: $text-color;
+    font-size: 2rem;
+    min-width: max-content;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 2;
+  }
+
+  &__circle {
+    background-color: $accent-color;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    animation: loading 0.7s ease infinite;
+    margin: 0.5rem;
+
+    &--one {
+      animation-delay: 0.3s;
+    }
+    &--two {
+      animation-delay: 0.4s;
+    }
+    &--three {
+      animation-delay: 0.5s;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      width: 0.7rem;
+      height: 0.7rem;
+    }
+
+    50% {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
+}

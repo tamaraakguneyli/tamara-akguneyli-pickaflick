@@ -5,7 +5,7 @@
   @include flex-container(row, center, center);
   background-color: $secondary-color;
   overflow-x: auto;
-  width: 80%;
+  width: 90%;
   height: 12rem;
   padding: 1rem;
   border-radius: 5px;
@@ -17,14 +17,12 @@
   &__wrapper {
     display: flex;
     gap: 1rem;
-    flex-wrap: nowrap;
-    padding-right: 1rem;
   }
 
   &__icon {
     cursor: pointer;
     width: 8%;
     position: absolute;
-    right: 13rem;
+    right: 6rem;
   }
 }
