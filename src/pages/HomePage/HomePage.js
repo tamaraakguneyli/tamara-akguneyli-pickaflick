@@ -132,7 +132,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header logOut={handleLogout} />
+      <Header logOut={handleLogout} username={user.username} />
       <main>
         <div className="home-layout">
           <div className="home-layout__header">

@@ -4,6 +4,11 @@
 .item {
   height: 10rem;
 
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+
   &:last-child {
     padding-right: 1rem;
   }
