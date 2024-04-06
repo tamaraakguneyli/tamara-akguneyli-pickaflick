@@ -1,0 +1,24 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.media {
+  @include flex-container(row, center, center);
+
+  &__text {
+    @include flex-container(column, center, center);
+  }
+  &__title {
+    color: $text-color;
+    font-size: 1.5rem;
+  }
+
+  &__overview {
+    color: $text-color;
+    font-size: 0.85rem;
+  }
+
+  &__date {
+    color: $text-color;
+    font-size: 0.85rem;
+  }
+}

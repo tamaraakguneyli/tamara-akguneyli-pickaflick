@@ -1,11 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.test {
-  color: white;
-  font-size: 1rem;
-}
-
 .layout {
   @include flex-container(column, space-around, flex-start);
   @include container;
@@ -15,6 +10,10 @@
     width: 100%;
     margin-top: 3rem;
 
+    &--profile {
+      margin-top: 0.5rem;
+    }
+
     &:first-child {
       margin-top: 2rem;
     }
@@ -22,6 +21,10 @@
 
   &__title {
     color: $text-color;
+
+    &--profile {
+      margin: 0;
+    }
   }
 
   &__icon {
@@ -61,5 +64,18 @@
     @include flex-container(column, center, center);
     margin-right: 1rem;
     width: 44.5%;
+  }
+
+  &__media {
+    @include flex-container(row, space-between, center);
+    width: 100%;
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+
+  &__watch {
+    width: 100%;
   }
 }

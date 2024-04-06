@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 import starIcon from "../../assets/images/icons/star-icon.png";
 import MediaContent from "../../components/MediaContent/MediaContent";
+import MediaDetails from "../../components/MediaDetails/MediaDetails";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+
+  const page = useLocation();
+  const isProfilePage = page.pathname.includes("/profile");
 
   useEffect(() => {
     const loadData = async () => {
@@ -68,23 +72,54 @@ export default function ProfilePage() {
       <main>
         <div className="layout">
           <div className="layout__header">
-            <h1 className="layout__title">Watchlist</h1>
+            <h1
+              className={` ${
+                isProfilePage
+                  ? "layout__title layout__title--profile"
+                  : "layout__title"
+              }`}
+            >
+              Watchlist
+            </h1>
             <img
               src={starIcon}
               alt="coral star icon"
               className="layout__icon"
             />
           </div>
-          <MediaContent />
-          <div className="layout__header">
-            <h1 className="layout__title">Watched</h1>
+          <div className="layout__media">
+            <MediaContent />
+            <MediaDetails type="media" />
+          </div>
+          <div
+            className={` ${
+              isProfilePage
+                ? "layout__header layout__header--profile"
+                : "layout__header"
+            }`}
+          >
+            <h1
+              className={` ${
+                isProfilePage
+                  ? "layout__title layout__title--profile"
+                  : "layout__title"
+              }`}
+            >
+              Watched
+            </h1>
             <img
               src={starIcon}
               alt="coral star icon"
               className="layout__icon"
             />
           </div>
-          <MediaContent />
+          <div className="layout__media">
+            <MediaContent />
+            <MediaDetails type="comments" />
+          </div>
+          <div className="layout__media">
+            <MediaDetails />
+          </div>
         </div>
       </main>
     </>
