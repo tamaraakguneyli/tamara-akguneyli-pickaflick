@@ -10,6 +10,10 @@
   padding: 1rem;
   border-radius: 5px;
 
+  &--profile {
+    width: 50%;
+  }
+
   &--top-media {
     width: 100%;
   }
@@ -24,5 +28,9 @@
     width: 8%;
     position: absolute;
     right: 6rem;
+
+    &--profile {
+      right: 36rem;
+    }
   }
 }

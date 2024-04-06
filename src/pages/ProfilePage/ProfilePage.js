@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./ProfilePage.scss";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
+import starIcon from "../../assets/images/icons/star-icon.png";
+import MediaContent from "../../components/MediaContent/MediaContent";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
@@ -40,12 +41,12 @@ export default function ProfilePage() {
   if (failedAuth) {
     return (
       <main>
-        <div className="home-layout__login-section">
-          <p className="home-layout__login">
+        <div className="layout__login-section">
+          <p className="layout__login">
             You must be logged in to see this page.
           </p>
           <p>
-            <Link to="/login" className="home-layout__link">
+            <Link to="/login" className="layout__link">
               LOG IN
             </Link>
           </p>
@@ -64,6 +65,28 @@ export default function ProfilePage() {
   return (
     <>
       <Header logOut={handleLogout} username={user.username} />
+      <main>
+        <div className="layout">
+          <div className="layout__header">
+            <h1 className="layout__title">Watchlist</h1>
+            <img
+              src={starIcon}
+              alt="coral star icon"
+              className="layout__icon"
+            />
+          </div>
+          <MediaContent />
+          <div className="layout__header">
+            <h1 className="layout__title">Watched</h1>
+            <img
+              src={starIcon}
+              alt="coral star icon"
+              className="layout__icon"
+            />
+          </div>
+          <MediaContent />
+        </div>
+      </main>
     </>
   );
 }

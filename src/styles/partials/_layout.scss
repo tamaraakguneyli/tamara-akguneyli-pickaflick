@@ -6,7 +6,7 @@
   font-size: 1rem;
 }
 
-.home-layout {
+.layout {
   @include flex-container(column, space-around, flex-start);
   @include container;
 

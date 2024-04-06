@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./HomePage.scss";
 import MediaContent from "../../components/MediaContent/MediaContent";
 import starIcon from "../../assets/images/icons/star-icon.png";
 import topMovieHeader from "../../assets/images/icons/top-movies-icon.png";
@@ -108,12 +107,12 @@ export default function HomePage() {
   if (failedAuth) {
     return (
       <main>
-        <div className="home-layout__login-section">
-          <p className="home-layout__login">
+        <div className="layout__login-section">
+          <p className="layout__login">
             You must be logged in to see this page.
           </p>
           <p>
-            <Link to="/login" className="home-layout__link">
+            <Link to="/login" className="layout__link">
               LOG IN
             </Link>
           </p>
@@ -134,40 +133,40 @@ export default function HomePage() {
     <>
       <Header logOut={handleLogout} username={user.username} />
       <main>
-        <div className="home-layout">
-          <div className="home-layout__header">
-            <h1 className="home-layout__title">Movies</h1>
+        <div className="layout">
+          <div className="layout__header">
+            <h1 className="layout__title">Movies</h1>
             <img
               src={starIcon}
               alt="coral star icon"
-              className="home-layout__icon"
+              className="layout__icon"
             />
           </div>
           <MediaContent media={movies} />
-          <div className="home-layout__header">
-            <h1 className="home-layout__title">Series</h1>
+          <div className="layout__header">
+            <h1 className="layout__title">Series</h1>
             <img
               src={starIcon}
               alt="coral star icon"
-              className="home-layout__icon"
+              className="layout__icon"
             />
           </div>
           <MediaContent media={series} />
         </div>
-        <section className="home-layout__top-media">
-          <div className="home-layout__top-blocks">
+        <section className="layout__top-media">
+          <div className="layout__top-blocks">
             <img
               src={topMovieHeader}
               alt="top movies title"
-              className="home-layout__top-title"
+              className="layout__top-title"
             />
             <TopMedia media={topMovies} />
           </div>
-          <div className="home-layout__top-blocks">
+          <div className="layout__top-blocks">
             <img
               src={topSeriesHeader}
               alt="top movies title"
-              className="home-layout__top-title"
+              className="layout__top-title"
             />
             <TopMedia media={topSeries} />
           </div>
