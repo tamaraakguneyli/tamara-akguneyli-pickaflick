@@ -34,7 +34,6 @@ export default function HomePage() {
         `${API}/3/tv/top_rated${API_KEY}`
       );
       setSeries(seriesData.results);
-
       const { data: topMoviesData } = await axios.get(
         `${API}/3/trending/movie/day${API_KEY}`
       );
@@ -142,7 +141,7 @@ export default function HomePage() {
               className="layout__icon"
             />
           </div>
-          <MediaContent media={movies} />
+          <MediaContent media={movies} user={user} />
           <div className="layout__header">
             <h1 className="layout__title">Series</h1>
             <img

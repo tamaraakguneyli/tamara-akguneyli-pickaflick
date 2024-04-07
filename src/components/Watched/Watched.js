@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./MediaContent.scss";
-import MediaItem from "../MediaItem/MediaItem";
+import "../MediaContent/MediaContent.scss";
 import nextIcon from "../../assets/images/icons/next-icon.png";
 import MediaModal from "../MediaModal/MediaModal.js";
+import WatchedItem from "../WatchedItem/WatchedItem.js";
 
-export default function MediaContent({ media, user }) {
+export default function Watched() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
 
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
 
-  const handleOpenModal = (eachMedia) => {
-    setSelectedMedia(eachMedia);
+  const handleOpenModal = () => {
+    setSelectedMedia();
     setModalIsOpen(true);
   };
 
@@ -27,16 +27,8 @@ export default function MediaContent({ media, user }) {
       <section
         className={` ${isProfilePage ? "content content--profile" : "content"}`}
       >
-        <div className="content__wrapper">
-          {media &&
-            media.map((item) => (
-              <MediaItem
-                key={item.id}
-                poster={item.poster_path}
-                onClick={() => handleOpenModal(item)}
-              />
-            ))}
-        </div>
+        <div className="content__wrapper"></div>
+        <WatchedItem />
         <img
           className={` ${
             isProfilePage
@@ -52,7 +44,6 @@ export default function MediaContent({ media, user }) {
           media={selectedMedia}
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
-          userId={user.id}
         />
       )}
     </>

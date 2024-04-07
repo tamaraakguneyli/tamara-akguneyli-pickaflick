@@ -4,8 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 import starIcon from "../../assets/images/icons/star-icon.png";
-import MediaContent from "../../components/MediaContent/MediaContent";
 import MediaDetails from "../../components/MediaDetails/MediaDetails";
+import Watchlist from "../../components/Watchlist/Watchlist";
+import Watched from "../../components/Watched/Watched";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
@@ -88,7 +89,7 @@ export default function ProfilePage() {
             />
           </div>
           <div className="layout__media">
-            <MediaContent />
+            <Watchlist userId={user.id} />
             <MediaDetails type="media" />
           </div>
           <div
@@ -114,7 +115,7 @@ export default function ProfilePage() {
             />
           </div>
           <div className="layout__media">
-            <MediaContent />
+            <Watched />
             <MediaDetails type="comments" />
           </div>
           <div className="layout__media">
