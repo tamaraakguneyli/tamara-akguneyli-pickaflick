@@ -3,7 +3,7 @@ import "../MediaContent/MediaContent.scss";
 import MediaItem from "../MediaItem/MediaItem";
 import MediaModal from "../MediaModal/MediaModal";
 
-export default function TopMedia({ media }) {
+export default function TopMedia({ media, user }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
 
@@ -33,6 +33,7 @@ export default function TopMedia({ media }) {
           media={selectedMedia}
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
+          userId={user.id}
         />
       )}
     </section>

@@ -16,6 +16,11 @@
   height: auto;
   z-index: 10;
 
+  &--reviews {
+    background-color: $background-color;
+    border: 10px solid $secondary-color;
+  }
+
   &__content {
     text-align: center;
   }
@@ -47,9 +52,14 @@
     font-weight: bold;
     border-radius: 0.4rem;
     transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
 
     &--hide {
       display: none;
+    }
+
+    &--reviews {
+      margin-top: 1rem;
     }
 
     &:hover {
@@ -58,6 +68,12 @@
 
     &:last-child {
       margin-top: 1rem;
+    }
+
+    &--remove {
+      &:hover {
+        background-color: #8b0000;
+      }
     }
   }
 
@@ -80,4 +96,8 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+
+  &--reviews {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 }

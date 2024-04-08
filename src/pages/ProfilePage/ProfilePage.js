@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 import starIcon from "../../assets/images/icons/star-icon.png";
-import MediaDetails from "../../components/MediaDetails/MediaDetails";
 import Watchlist from "../../components/Watchlist/Watchlist";
 import Watched from "../../components/Watched/Watched";
 
@@ -73,54 +72,23 @@ export default function ProfilePage() {
       <main>
         <div className="layout">
           <div className="layout__header">
-            <h1
-              className={` ${
-                isProfilePage
-                  ? "layout__title layout__title--profile"
-                  : "layout__title"
-              }`}
-            >
-              Watchlist
-            </h1>
+            <h1 className="layout__title">Watchlist</h1>
             <img
               src={starIcon}
               alt="coral star icon"
               className="layout__icon"
             />
           </div>
-          <div className="layout__media">
-            <Watchlist userId={user.id} />
-            <MediaDetails type="media" />
-          </div>
-          <div
-            className={` ${
-              isProfilePage
-                ? "layout__header layout__header--profile"
-                : "layout__header"
-            }`}
-          >
-            <h1
-              className={` ${
-                isProfilePage
-                  ? "layout__title layout__title--profile"
-                  : "layout__title"
-              }`}
-            >
-              Watched
-            </h1>
+          <Watchlist userId={user.id} />
+          <div className="layout__header">
+            <h1 className="layout__title">Watched</h1>
             <img
               src={starIcon}
               alt="coral star icon"
               className="layout__icon"
             />
           </div>
-          <div className="layout__media">
-            <Watched />
-            <MediaDetails type="comments" />
-          </div>
-          <div className="layout__media">
-            <MediaDetails />
-          </div>
+          <Watched userId={user.id} />
         </div>
       </main>
     </>

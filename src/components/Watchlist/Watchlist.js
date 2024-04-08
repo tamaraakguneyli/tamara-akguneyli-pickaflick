@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import "../MediaContent/MediaContent.scss";
 import nextIcon from "../../assets/images/icons/next-icon.png";
 import MediaModal from "../MediaModal/MediaModal.js";
 import WatchlistItem from "../WatchlistItem/WatchlistItem.js";
+import axios from "axios";
 
 const Watchlist = ({ userId }) => {
   const [watchlist, setWatchlist] = useState([]);
@@ -13,6 +13,16 @@ const Watchlist = ({ userId }) => {
 
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
+
+  const handleOpenModal = (media) => {
+    setSelectedMedia(media);
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+    setSelectedMedia(null);
+  };
 
   useEffect(() => {
     const fetchWatchlist = async () => {
@@ -29,20 +39,18 @@ const Watchlist = ({ userId }) => {
     fetchWatchlist();
   }, [userId]);
 
-  const handleOpenModal = (media) => {
-    setSelectedMedia(media);
-    setModalIsOpen(true);
-  };
+  // const updatedWatchlist = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/watchlist/${userId}`
+  //     );
+  //     setWatchlist(response.data);
+  //   } catch (error) {
+  //     console.error("Error updating watchlist", error);
+  //   }
+  //   updatedWatchlist();
+  // };
 
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-    setSelectedMedia(null);
-  };
-
-  const handleAddToWatchlist = (newMediaItem) => {
-    setWatchlist([...watchlist, newMediaItem]);
-    handleCloseModal();
-  };
   return (
     <>
       <section
@@ -76,8 +84,8 @@ const Watchlist = ({ userId }) => {
           media={selectedMedia}
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
-          handleAddToWatchlist={handleAddToWatchlist}
           userId={userId}
+          // updatedWatchlist={updatedWatchlist}
         />
       )}
     </>

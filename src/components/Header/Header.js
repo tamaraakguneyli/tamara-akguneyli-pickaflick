@@ -35,6 +35,7 @@ export default function Header({ logOut, username }) {
           >
             PROFILE
           </Link>
+
           <h1 className="header__page">RANDOM SHUFFLE</h1>
         </div>
         <div className="header__account">

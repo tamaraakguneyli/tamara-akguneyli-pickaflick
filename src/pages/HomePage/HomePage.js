@@ -150,7 +150,7 @@ export default function HomePage() {
               className="layout__icon"
             />
           </div>
-          <MediaContent media={series} />
+          <MediaContent media={series} user={user} />
         </div>
         <section className="layout__top-media">
           <div className="layout__top-blocks">
@@ -159,7 +159,7 @@ export default function HomePage() {
               alt="top movies title"
               className="layout__top-title"
             />
-            <TopMedia media={topMovies} />
+            <TopMedia media={topMovies} user={user} />
           </div>
           <div className="layout__top-blocks">
             <img
@@ -167,7 +167,7 @@ export default function HomePage() {
               alt="top movies title"
               className="layout__top-title"
             />
-            <TopMedia media={topSeries} />
+            <TopMedia media={topSeries} user={user} />
           </div>
         </section>
       </main>
