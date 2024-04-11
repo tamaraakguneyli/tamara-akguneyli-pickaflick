@@ -40,6 +40,7 @@ export default function MediaContent({ media, user }) {
           media={selectedMedia}
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
+          inHomePage={true}
           userId={user.id}
         />
       )}

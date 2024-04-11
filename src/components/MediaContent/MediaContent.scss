@@ -10,6 +10,10 @@
   padding: 1rem;
   border-radius: 5px;
 
+  &--profile {
+    justify-content: flex-start;
+  }
+
   &--top-media {
     width: 100%;
   }

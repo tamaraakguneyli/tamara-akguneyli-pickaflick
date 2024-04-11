@@ -39,17 +39,16 @@ const Watched = ({ userId }) => {
     fetchWatched();
   }, [userId]);
 
-  const updatedWatched = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/watched/${userId}`
-      );
-      setWatched(response.data);
-    } catch (error) {
-      console.error("Error updating watched", error);
-    }
-    // handleCloseModal();
-  };
+  // const updatedWatched = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/watched/${userId}`
+  //     );
+  //     setWatched(response.data);
+  //   } catch (error) {
+  //     console.error("Error updating watched", error);
+  //   }
+  // };
 
   return (
     <>
@@ -84,9 +83,8 @@ const Watched = ({ userId }) => {
           media={selectedMedia}
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
-          updatedWatched={updatedWatched}
           userId={userId}
-          test={watched}
+          isWatchlist={false}
         />
       )}
     </>

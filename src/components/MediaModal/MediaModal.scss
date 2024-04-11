@@ -27,12 +27,18 @@
 
   &__title {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   &__overview {
     font-size: 0.85rem;
     margin-bottom: 1rem;
+  }
+
+  &__added-watchlist {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
   }
 
   &__footer {
@@ -52,14 +58,13 @@
     font-weight: bold;
     border-radius: 0.4rem;
     transition: background-color 0.3s ease;
-    margin-bottom: 1rem;
 
     &--hide {
       display: none;
     }
 
-    &--reviews {
-      margin-top: 1rem;
+    &--home {
+      margin-bottom: 1rem;
     }
 
     &:hover {

@@ -7,6 +7,7 @@ import WatchlistItem from "../WatchlistItem/WatchlistItem.js";
 import axios from "axios";
 
 const Watchlist = ({ userId }) => {
+  const [watched, setWatched] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
@@ -38,18 +39,6 @@ const Watchlist = ({ userId }) => {
 
     fetchWatchlist();
   }, [userId]);
-
-  // const updatedWatchlist = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/watchlist/${userId}`
-  //     );
-  //     setWatchlist(response.data);
-  //   } catch (error) {
-  //     console.error("Error updating watchlist", error);
-  //   }
-  //   updatedWatchlist();
-  // };
 
   return (
     <>
@@ -85,6 +74,8 @@ const Watchlist = ({ userId }) => {
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
           userId={userId}
+          inWatchlist={true}
+          inWatched={false}
           // updatedWatchlist={updatedWatchlist}
         />
       )}

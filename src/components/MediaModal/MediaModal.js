@@ -10,12 +10,16 @@ export default function MediaModal({
   modalIsOpen,
   handleCloseModal,
   userId,
-  updatedWatchlist,
   updatedWatched,
+  inWatchlist,
+  inHomePage,
 }) {
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [watchlistMessage, setWatchlistMessage] = useState(false);
+  const [watchedMessage, setWatchedMessage] = useState(false);
+  const [error, setError] = useState(null);
 
   const addToWatchlist = async () => {
     try {
@@ -26,12 +30,18 @@ export default function MediaModal({
           overview: media.overview,
           release_date: media.release_date || media.first_air_date,
           poster_url: `https://image.tmdb.org/t/p/original${media.poster_path}`,
+          api_id: media.id,
         },
       });
+      setWatchlistMessage(true);
+      setTimeout(() => {
+        handleCloseModal();
+      }, 1500);
+
       console.log("Media added to watchlist", response.data);
-      handleCloseModal();
     } catch (error) {
-      console.error("Error adding to watchlist:", error);
+      console.error("Error adding to watchlist", error);
+      setError(error.response.data);
     }
   };
 
@@ -68,7 +78,11 @@ export default function MediaModal({
   const handleMoveToWatched = () => {
     if (media && media.id) {
       addToWatched(media.id);
-      handleCloseModal();
+
+      setWatchedMessage(true);
+      setTimeout(() => {
+        handleCloseModal();
+      }, 1500);
     }
   };
 
@@ -109,37 +123,71 @@ export default function MediaModal({
             </p>
           </div>
           <div className="modal__footer">
+            {watchlistMessage && (
+              <p className="modal__added-watchlist">
+                {media.title}
+                {media.name} {""} has now been added to your watchlist!
+              </p>
+            )}
+            {error && (
+              <p className="modal__added-watchlist">
+                {media.title}
+                {media.name} {""}
+                {error}
+              </p>
+            )}
             <button
               className={` ${
                 isProfilePage
                   ? "modal__close modal__close--hide"
-                  : "modal__close"
+                  : "modal__close modal__close--home"
               }`}
               onClick={addToWatchlist}
             >
               Add To Watchlist
             </button>
-
-            <button
-              className={` ${
-                isProfilePage
-                  ? "modal__close"
-                  : "modal__close modal__close--hide"
-              }`}
-              onClick={handleMoveToWatched}
-            >
-              Move to Watched
-            </button>
-            <button
-              className={` ${
-                isProfilePage
-                  ? "modal__close"
-                  : "modal__close modal__close--hide"
-              }`}
-              onClick={openReviewModal}
-            >
-              Add a Review
-            </button>
+            {watchedMessage && (
+              <p className="modal__added-watchlist">
+                {media.title}
+                {media.name} {""} has now been moved to watched!
+              </p>
+            )}
+            {inWatchlist && (
+              <button
+                className={` ${
+                  isProfilePage
+                    ? "modal__close"
+                    : "modal__close modal__close--hide"
+                }`}
+                onClick={handleMoveToWatched}
+              >
+                Move to Watched
+              </button>
+            )}
+            {inHomePage && (
+              <button
+                className={` ${
+                  isProfilePage
+                    ? "modal__close modal__close--hide"
+                    : "modal__close "
+                }`}
+                onClick={openReviewModal}
+              >
+                View Reviews
+              </button>
+            )}
+            {!inWatchlist && (
+              <button
+                className={` ${
+                  isProfilePage
+                    ? "modal__close"
+                    : "modal__close modal__close--hide"
+                }`}
+                onClick={openReviewModal}
+              >
+                Add a Review
+              </button>
+            )}
             {/* <button
               className={` ${
                 isProfilePage
@@ -162,6 +210,7 @@ export default function MediaModal({
           modalIsOpen={showReviewModal}
           handleCloseModal={closeReviewModal}
           userId={userId}
+          inHomePage={inHomePage}
         />
       )}
     </Modal>
