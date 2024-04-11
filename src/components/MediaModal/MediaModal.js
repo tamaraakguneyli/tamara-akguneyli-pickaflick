@@ -10,9 +10,9 @@ export default function MediaModal({
   modalIsOpen,
   handleCloseModal,
   userId,
-  updatedWatched,
   inWatchlist,
   inHomePage,
+  setUpdateLists,
 }) {
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
@@ -20,6 +20,10 @@ export default function MediaModal({
   const [watchlistMessage, setWatchlistMessage] = useState(false);
   const [watchedMessage, setWatchedMessage] = useState(false);
   const [error, setError] = useState(null);
+
+  const formattedReleaseDate = new Date(
+    media.release_date || media.first_air_date
+  ).toLocaleDateString();
 
   const addToWatchlist = async () => {
     try {
@@ -45,24 +49,23 @@ export default function MediaModal({
     }
   };
 
-  // const removeFromWatchlist = async (mediaitemId) => {
-  //   try {
-  //     const response = await axios.delete(
-  //       `http://localhost:8080/watchlist/${mediaitemId}`
-  //     );
-  //     console.log("Media removed from watchlist:", response.data);
-  //   } catch (error) {
-  //     console.error("Error removing from watchlist:", error);
-  //   }
-  // };
+  const removeFromWatchlist = async (mediaitemId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/watchlist/${mediaitemId}`
+      );
+      console.log("Media removed from watchlist:", response.data);
+    } catch (error) {
+      console.error("Error removing from watchlist:", error);
+    }
+  };
 
-  // const handleRemoveFromWatchlist = () => {
-  //   if (media && media.id) {
-  //     removeFromWatchlist(media.id);
-  //     updatedWatchlist();
-  //     handleCloseModal();
-  //   }
-  // };
+  const handleRemoveFromWatchlist = () => {
+    if (media && media.id) {
+      removeFromWatchlist(media.id);
+      handleCloseModal();
+    }
+  };
 
   const addToWatched = async (mediaitemId) => {
     try {
@@ -78,10 +81,11 @@ export default function MediaModal({
   const handleMoveToWatched = () => {
     if (media && media.id) {
       addToWatched(media.id);
-
       setWatchedMessage(true);
+
       setTimeout(() => {
         handleCloseModal();
+        setUpdateLists(true);
       }, 1500);
     }
   };
@@ -118,9 +122,16 @@ export default function MediaModal({
               {media.name}
             </h2>
             <p className="modal__overview">{media.overview}</p>
-            <p className="modal__overview">
-              Release Date: {media.release_date} {media.first_air_date}
-            </p>
+            {isProfilePage && (
+              <p className="modal__overview">
+                Release Date: {formattedReleaseDate}
+              </p>
+            )}
+            {!isProfilePage && (
+              <p className="modal__overview">
+                Release Date: {media.release_date} {media.first_air_date}
+              </p>
+            )}
           </div>
           <div className="modal__footer">
             {watchlistMessage && (
@@ -185,10 +196,10 @@ export default function MediaModal({
                 }`}
                 onClick={openReviewModal}
               >
-                Add a Review
+                Add/Edit my Review
               </button>
             )}
-            {/* <button
+            <button
               className={` ${
                 isProfilePage
                   ? "modal__close modal__close--remove"
@@ -196,8 +207,8 @@ export default function MediaModal({
               }`}
               onClick={handleRemoveFromWatchlist}
             >
-              Remove {media.title}
-            </button> */}
+              Remove {media.title} from my profile
+            </button>
             <button className="modal__close" onClick={handleCloseModal}>
               Close
             </button>

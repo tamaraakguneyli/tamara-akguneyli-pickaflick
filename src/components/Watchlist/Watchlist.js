@@ -6,11 +6,11 @@ import MediaModal from "../MediaModal/MediaModal.js";
 import WatchlistItem from "../WatchlistItem/WatchlistItem.js";
 import axios from "axios";
 
-const Watchlist = ({ userId }) => {
-  const [watched, setWatched] = useState([]);
+const Watchlist = ({ userId, setUpdateLists, updateLists }) => {
   const [watchlist, setWatchlist] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
+  // const [updateWatchlist, setUpdateWatchlist] = useState(false);
 
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
@@ -36,9 +36,8 @@ const Watchlist = ({ userId }) => {
         console.error("Error fetching watchlist:", error);
       }
     };
-
     fetchWatchlist();
-  }, [userId]);
+  }, [userId, updateLists]);
 
   return (
     <>
@@ -76,7 +75,7 @@ const Watchlist = ({ userId }) => {
           userId={userId}
           inWatchlist={true}
           inWatched={false}
-          // updatedWatchlist={updatedWatchlist}
+          setUpdateLists={setUpdateLists}
         />
       )}
     </>

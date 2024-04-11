@@ -23,3 +23,9 @@ body {
 a {
   text-decoration: none;
 }
+
+::placeholder {
+  color: $background-color;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}

@@ -6,7 +6,7 @@ import MediaModal from "../MediaModal/MediaModal.js";
 import WatchedItem from "../WatchedItem/WatchedItem.js";
 import axios from "axios";
 
-const Watched = ({ userId }) => {
+const Watched = ({ userId, setUpdateLists, updateLists }) => {
   const [watched, setWatched] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
@@ -37,18 +37,7 @@ const Watched = ({ userId }) => {
     };
 
     fetchWatched();
-  }, [userId]);
-
-  // const updatedWatched = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/watched/${userId}`
-  //     );
-  //     setWatched(response.data);
-  //   } catch (error) {
-  //     console.error("Error updating watched", error);
-  //   }
-  // };
+  }, [userId, updateLists]);
 
   return (
     <>
@@ -85,6 +74,7 @@ const Watched = ({ userId }) => {
           handleCloseModal={handleCloseModal}
           userId={userId}
           isWatchlist={false}
+          setUpdateLists={setUpdateLists}
         />
       )}
     </>

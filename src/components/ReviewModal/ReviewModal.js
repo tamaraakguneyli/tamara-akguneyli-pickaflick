@@ -12,6 +12,7 @@ export default function ReviewModal({
 }) {
   const [reviewList, setReviewList] = useState([]);
   const [newReviewText, setNewReviewText] = useState("");
+  const [noReviews, setNoReviews] = useState(false);
 
   const fetchReviews = async () => {
     try {
@@ -25,6 +26,7 @@ export default function ReviewModal({
 
       const response = await axios.get(request);
       setReviewList(response.data);
+      setNoReviews(response.data.length === 0);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     }
@@ -45,7 +47,6 @@ export default function ReviewModal({
         user_id: userId,
         review: newReviewText,
       });
-
       console.log("Review submitted successfully:", response.data);
 
       fetchReviews();
@@ -58,24 +59,26 @@ export default function ReviewModal({
 
   const deleteReview = async () => {
     try {
-      const response = await axios.delete("http://localhost:8080/reviews", {
+      const response = await axios.put("http://localhost:8080/reviews", {
         mediaitem_id: media.id,
         user_id: userId,
-        review: newReviewText,
+        review: null,
       });
       console.log("Review deleted successfully:", response.data);
+      fetchReviews();
     } catch (error) {
       console.error("Error deleting review", error);
     }
   };
 
-  // const filteredReviews = reviewList.filter((review) => {
-  //   return review.api_id === media.id;
-  // });
-
   const hasSubmittedReview = reviewList.some(
     (review) => review.review !== null && review.review !== undefined
   );
+
+  const filteredReviews = reviewList.filter(
+    (review) => review.user_id === userId
+  );
+  const usersReview = filteredReviews[0];
 
   return (
     <Modal
@@ -92,18 +95,30 @@ export default function ReviewModal({
             <h2 className="modal__title">
               {media.title || media.name} Reviews
             </h2>
-            <div className="modal__reviews-list"></div>
+            {noReviews && (
+              <p> {media.title || media.name} has no reviews yet!</p>
+            )}
+
+            <div className="modal__reviews"></div>
             {reviewList.map((review) => (
-              <p key={review.id} className="modal__review">
-                {review.review}
-              </p>
+              <div className="modal__reviews--section">
+                <p key={review.id} className="modal__review">
+                  {review.review}
+                </p>
+                <p className="modal__author">
+                  Author: {""}
+                  {review.username}{" "}
+                </p>
+              </div>
             ))}
             {!inHomePage && (
               <form onSubmit={handleSubmit} className="form">
                 <textarea
                   rows="4"
                   cols="50"
-                  placeholder="Write your review here..."
+                  placeholder={
+                    usersReview ? usersReview.review : "Add your review here!"
+                  }
                   value={newReviewText}
                   onChange={(e) => setNewReviewText(e.target.value)}
                   className="form__textarea"

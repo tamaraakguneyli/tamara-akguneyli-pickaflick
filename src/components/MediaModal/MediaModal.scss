@@ -67,6 +67,10 @@
       margin-bottom: 1rem;
     }
 
+    &--remove {
+      margin-top: 1rem;
+    }
+
     &:hover {
       background-color: $secondary-color;
     }
@@ -91,6 +95,24 @@
 
   &__container {
     padding: 0 5rem;
+  }
+
+  &__reviews {
+    &--section {
+      background-color: $primary-color;
+      padding: 0.5rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      @include flex-container(column, center, center);
+    }
+  }
+
+  &__author {
+    color: $accent-color;
+    background-color: $background-color;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: fit-content;
   }
 }
 

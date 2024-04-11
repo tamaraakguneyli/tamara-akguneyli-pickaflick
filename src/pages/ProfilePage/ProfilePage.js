@@ -10,6 +10,7 @@ import Watched from "../../components/Watched/Watched";
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [updateLists, setUpdateLists] = useState(false);
 
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
@@ -79,7 +80,11 @@ export default function ProfilePage() {
               className="layout__icon"
             />
           </div>
-          <Watchlist userId={user.id} />
+          <Watchlist
+            userId={user.id}
+            setUpdateLists={setUpdateLists}
+            updateLists={updateLists}
+          />
           <div className="layout__header">
             <h1 className="layout__title">Watched</h1>
             <img
@@ -88,7 +93,11 @@ export default function ProfilePage() {
               className="layout__icon"
             />
           </div>
-          <Watched userId={user.id} />
+          <Watched
+            userId={user.id}
+            setUpdateLists={setUpdateLists}
+            updateLists={updateLists}
+          />
         </div>
       </main>
     </>
