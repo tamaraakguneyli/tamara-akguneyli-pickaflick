@@ -14,5 +14,9 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-size: inherit;
+
+    &--invalid {
+      border: 3px solid $accent-color;
+    }
   }
 }

@@ -20,7 +20,7 @@ export default function RegisterPage() {
       navigate("/login");
     } catch (error) {
       event.target.reset();
-      setError(error.response.data);
+      setError(error.response.data.error);
     }
   };
 
@@ -33,9 +33,36 @@ export default function RegisterPage() {
       />
       <form className="register" onSubmit={handleSubmit}>
         <h1 className="register__title">Register</h1>
-        <Input type="text" name="username" label="Username" />
-        <Input type="text" name="email" label="Email" />
-        <Input type="password" name="password" label="Password" />
+        <Input
+          type="text"
+          name="username"
+          label="Username"
+          className={
+            error.includes("username") || error.includes("required email")
+              ? "field__input field__input--invalid"
+              : "field__input"
+          }
+        />
+        <Input
+          type="text"
+          name="email"
+          label="Email"
+          className={
+            error.includes("email") || error.includes("required email")
+              ? "field__input field__input--invalid"
+              : "field__input"
+          }
+        />
+        <Input
+          type="password"
+          name="password"
+          label="Password"
+          className={
+            error.includes("password") || error.includes("required password")
+              ? "field__input field__input--invalid"
+              : "field__input"
+          }
+        />
         <button className="register__button">Register Now</button>
         <p>{error}</p>
       </form>

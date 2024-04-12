@@ -19,6 +19,7 @@ export default function MediaModal({
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [watchlistMessage, setWatchlistMessage] = useState(false);
   const [watchedMessage, setWatchedMessage] = useState(false);
+  const [deletedMessage, setDeletedMessage] = useState(false);
   const [error, setError] = useState(null);
 
   const formattedReleaseDate = new Date(
@@ -40,12 +41,15 @@ export default function MediaModal({
       setWatchlistMessage(true);
       setTimeout(() => {
         handleCloseModal();
-      }, 1500);
+      }, 1000);
 
       console.log("Media added to watchlist", response.data);
     } catch (error) {
       console.error("Error adding to watchlist", error);
       setError(error.response.data);
+      setTimeout(() => {
+        handleCloseModal();
+      }, 1000);
     }
   };
 
@@ -63,7 +67,11 @@ export default function MediaModal({
   const handleRemoveFromWatchlist = () => {
     if (media && media.id) {
       removeFromWatchlist(media.id);
-      handleCloseModal();
+      setDeletedMessage(true);
+      setTimeout(() => {
+        handleCloseModal();
+        setUpdateLists(true);
+      }, 1000);
     }
   };
 
@@ -72,7 +80,7 @@ export default function MediaModal({
       const response = await axios.put(
         `http://localhost:8080/watched/${mediaitemId}`
       );
-      console.log("Media moved to watched section", response.data);
+      console.log("Media moved to watched section", response.data.error);
     } catch (error) {
       console.error("Unable to add to watched section", error);
     }
@@ -86,7 +94,22 @@ export default function MediaModal({
       setTimeout(() => {
         handleCloseModal();
         setUpdateLists(true);
-      }, 1500);
+      }, 1000);
+    }
+  };
+
+  const moveBackToWatchlist = async () => {
+    try {
+      if (media && media.id) {
+        await axios.put(`http://localhost:8080/watchlist/${media.id}`);
+        setWatchlistMessage(true);
+        setTimeout(() => {
+          handleCloseModal();
+          setUpdateLists(true);
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("Error moving media back to watchlist", error);
     }
   };
 
@@ -144,7 +167,7 @@ export default function MediaModal({
               <p className="modal__added-watchlist">
                 {media.title}
                 {media.name} {""}
-                {error}
+                {error.error}
               </p>
             )}
             <button
@@ -163,6 +186,12 @@ export default function MediaModal({
                 {media.name} {""} has now been moved to watched!
               </p>
             )}
+            {deletedMessage && (
+              <p className="modal__added-watchlist">
+                {media.title}
+                {media.name} {""} has now been removed from your watchlist!
+              </p>
+            )}
             {inWatchlist && (
               <button
                 className={` ${
@@ -173,6 +202,18 @@ export default function MediaModal({
                 onClick={handleMoveToWatched}
               >
                 Move to Watched
+              </button>
+            )}
+            {!inWatchlist && (
+              <button
+                className={` ${
+                  isProfilePage
+                    ? "modal__close"
+                    : "modal__close modal__close--hide"
+                }`}
+                onClick={moveBackToWatchlist}
+              >
+                Move back to Watchlist
               </button>
             )}
             {inHomePage && (
@@ -199,16 +240,18 @@ export default function MediaModal({
                 Add/Edit my Review
               </button>
             )}
-            <button
-              className={` ${
-                isProfilePage
-                  ? "modal__close modal__close--remove"
-                  : "modal__close modal__close--hide"
-              }`}
-              onClick={handleRemoveFromWatchlist}
-            >
-              Remove {media.title} from my profile
-            </button>
+            {inWatchlist && (
+              <button
+                className={` ${
+                  isProfilePage
+                    ? "modal__close modal__close--remove"
+                    : "modal__close modal__close--hide"
+                }`}
+                onClick={handleRemoveFromWatchlist}
+              >
+                Remove {media.title} from my watchlist
+              </button>
+            )}
             <button className="modal__close" onClick={handleCloseModal}>
               Close
             </button>

@@ -11,6 +11,7 @@ export default function ReviewModal({
   inHomePage,
 }) {
   const [reviewList, setReviewList] = useState([]);
+  console.log(reviewList);
   const [newReviewText, setNewReviewText] = useState("");
   const [noReviews, setNoReviews] = useState(false);
 
@@ -72,7 +73,10 @@ export default function ReviewModal({
   };
 
   const hasSubmittedReview = reviewList.some(
-    (review) => review.review !== null && review.review !== undefined
+    (review) =>
+      review.user_id === userId &&
+      review.review !== null &&
+      review.review !== undefined
   );
 
   const filteredReviews = reviewList.filter(
@@ -99,18 +103,19 @@ export default function ReviewModal({
               <p> {media.title || media.name} has no reviews yet!</p>
             )}
 
-            <div className="modal__reviews"></div>
-            {reviewList.map((review) => (
-              <div className="modal__reviews--section">
-                <p key={review.id} className="modal__review">
-                  {review.review}
-                </p>
-                <p className="modal__author">
-                  Author: {""}
-                  {review.username}{" "}
-                </p>
-              </div>
-            ))}
+            <div className="modal__reviews">
+              {reviewList.map((review) => (
+                <div className="modal__reviews--section">
+                  <p key={review.id} className="modal__review">
+                    {review.review}
+                  </p>
+                  <p className="modal__author">
+                    Author: {""}
+                    {review.username}{" "}
+                  </p>
+                </div>
+              ))}
+            </div>
             {!inHomePage && (
               <form onSubmit={handleSubmit} className="form">
                 <textarea

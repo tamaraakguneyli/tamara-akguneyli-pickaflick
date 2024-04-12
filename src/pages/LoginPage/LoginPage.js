@@ -44,8 +44,28 @@ export default function LoginPage() {
       />
       <form className="login" onSubmit={handleSubmit}>
         <h1 className="login__title">Log in</h1>
-        <Input type="text" name="username" label="Username" />
-        <Input type="password" name="password" label="Password" />
+        <Input
+          type="text"
+          name="username"
+          label="Username"
+          className={
+            error.includes("username") ||
+            error.includes("required username") ||
+            error.includes("exist")
+              ? "field__input field__input--invalid"
+              : "field__input"
+          }
+        />
+        <Input
+          type="password"
+          name="password"
+          label="Password"
+          className={
+            error.includes("password") || error.includes("required password")
+              ? "field__input field__input--invalid"
+              : "field__input"
+          }
+        />
         <button className="login__button">Log in</button>
         {error && <div className="login__message">{error}</div>}
       </form>

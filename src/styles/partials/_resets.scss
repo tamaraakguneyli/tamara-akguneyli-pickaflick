@@ -24,8 +24,9 @@ a {
   text-decoration: none;
 }
 
-::placeholder {
+::placeholder,
+textarea {
   color: $background-color;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  font-family: "Montserrat", "sans-serif";
 }

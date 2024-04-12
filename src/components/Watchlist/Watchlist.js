@@ -10,7 +10,6 @@ const Watchlist = ({ userId, setUpdateLists, updateLists }) => {
   const [watchlist, setWatchlist] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
-  // const [updateWatchlist, setUpdateWatchlist] = useState(false);
 
   const page = useLocation();
   const isProfilePage = page.pathname.includes("/profile");
