@@ -12,7 +12,7 @@
   }
 
   &__pages {
-    @include flex-container(row, space-around, center);
+    @include flex-container(row, flex-start, center);
     width: 100%;
   }
 
@@ -21,6 +21,7 @@
     font-size: 1rem;
     font-weight: 400;
     color: $text-color;
+    margin-right: 1rem;
 
     &--active {
       font-weight: 600;

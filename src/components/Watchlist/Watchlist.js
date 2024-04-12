@@ -16,6 +16,7 @@ const Watchlist = ({ userId, setUpdateLists, updateLists }) => {
 
   const handleOpenModal = (media) => {
     setSelectedMedia(media);
+    setUpdateLists(false);
     setModalIsOpen(true);
   };
 

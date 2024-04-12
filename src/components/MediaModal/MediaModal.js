@@ -53,28 +53,6 @@ export default function MediaModal({
     }
   };
 
-  const removeFromWatchlist = async (mediaitemId) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/watchlist/${mediaitemId}`
-      );
-      console.log("Media removed from watchlist:", response.data);
-    } catch (error) {
-      console.error("Error removing from watchlist:", error);
-    }
-  };
-
-  const handleRemoveFromWatchlist = () => {
-    if (media && media.id) {
-      removeFromWatchlist(media.id);
-      setDeletedMessage(true);
-      setTimeout(() => {
-        handleCloseModal();
-        setUpdateLists(true);
-      }, 1000);
-    }
-  };
-
   const addToWatched = async (mediaitemId) => {
     try {
       const response = await axios.put(
@@ -92,8 +70,8 @@ export default function MediaModal({
       setWatchedMessage(true);
 
       setTimeout(() => {
-        handleCloseModal();
         setUpdateLists(true);
+        handleCloseModal();
       }, 1000);
     }
   };
@@ -104,8 +82,8 @@ export default function MediaModal({
         await axios.put(`http://localhost:8080/watchlist/${media.id}`);
         setWatchlistMessage(true);
         setTimeout(() => {
-          handleCloseModal();
           setUpdateLists(true);
+          handleCloseModal();
         }, 1000);
       }
     } catch (error) {
@@ -186,12 +164,6 @@ export default function MediaModal({
                 {media.name} {""} has now been moved to watched!
               </p>
             )}
-            {deletedMessage && (
-              <p className="modal__added-watchlist">
-                {media.title}
-                {media.name} {""} has now been removed from your watchlist!
-              </p>
-            )}
             {inWatchlist && (
               <button
                 className={` ${
@@ -238,18 +210,6 @@ export default function MediaModal({
                 onClick={openReviewModal}
               >
                 Add/Edit my Review
-              </button>
-            )}
-            {inWatchlist && (
-              <button
-                className={` ${
-                  isProfilePage
-                    ? "modal__close modal__close--remove"
-                    : "modal__close modal__close--hide"
-                }`}
-                onClick={handleRemoveFromWatchlist}
-              >
-                Remove {media.title} from my watchlist
               </button>
             )}
             <button className="modal__close" onClick={handleCloseModal}>

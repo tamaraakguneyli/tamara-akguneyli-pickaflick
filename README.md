@@ -197,73 +197,98 @@ GET /trending/tv/day (get top 3 trending movies from today)
             "vote_average": 7.231,
             "vote_count": 1044
 
-MY API END POINTS
+1. GET /watchlist/:userId
 
-GET /watchlist (get each users watchlist on their profile)
+HTTP Method: GET
+Parameters: userId (User ID to fetch the watchlist for a specific user)
 
+Example Response:
+json
+
+[
 {
 "id": 1,
-"mediaItems_id": "",
-"user_id": "",
-"in_watchlist": "",
-"watched": "",
-"review": ""
+"title": "Movie Title",
+"overview": "Movie overview...",
+"poster_url": "https://example.com/poster.jpg",
+"release_date": "2024-04-12"
+},
+{
+"id": 2,
+"title": "Another Movie",
+"overview": "Another movie overview...",
+"poster_url": "https://example.com/another-poster.jpg",
+"release_date": "2024-04-15"
 }
+]
 
-POST /watchlist (add movies to your watchlist)
+2. POST /watchlist
+
+HTTP Method: POST
+Parameters:
+userId (User ID of the user adding the media)
+media (Media object to be added to the watchlist containing title, overview, release_date, poster_url, api_id)
+
+Example Request Body:
+json
 
 {
-"id": 1,
-"mediaItems_id": "",
-"user_id": "",
-"in_watchlist": "",
-"watched": "",
-"review": ""
+"userId": 1,
+"media": {
+"title": "New Movie",
+"overview": "New movie overview...",
+"release_date": "2024-04-20",
+"poster_url": "https://example.com/new-movie.jpg",
+"api_id": 12345
 }
-
-POST /mediaItem (add movies to your watchlist)
+}
+Example Response:
+json
 
 {
-"id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
+"message": "Media added to watchlist successfully"
 }
 
-PUT /watchlist/:watchListId (updating the watchlist tso the media item is not in it anymore, can also use it to update the watched section and adding a review)
+3. PUT /watchlist/:mediaitemId
+
+HTTP Method: PUT
+Parameters: mediaitemId (ID of the media item to be moved back to the watchlist)
+
+Example Response:
+json
 
 {
-"id": 1,
-"mediaItems_id": "",
-"user_id": "",
-"in_watchlist": "",
-"watched": "",
-"review": ""
+"message": "Media moved back to watchlist successfully"
 }
 
-GET /watchlist/:mediaItemId (get all info for individual movies)
+4. PUT /watched/:mediaitemId
+
+HTTP Method: PUT
+Parameters: mediaitemId (ID of the media item to be marked as watched)
+
+Example Response:
+json
 
 {
-"id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
+"message": "Media marked as watched successfully"
 }
 
-DELETE /watchlist/:watchListId (delete a review from a specific user for a movie/series)
+5. GET /watched/:userId
 
+HTTP Method: GET
+Parameters: userId (User ID to fetch the watched media for a specific user)
+Example Response:
+json
+
+[
 {
 "id": 1,
-"mediaItems_id": "",
-"user_id": "",
-"in_watchlist": "",
-"watched": "",
-"review": ""
+"title": "Watched Movie",
+"overview": "Watched movie overview...",
+"poster_url": "https://example.com/watched-poster.jpg",
+"release_date": "2024-04-10"
 }
+]
 
 ### Auth
 
@@ -277,26 +302,26 @@ I will have one fake user to mimic the look of having a user profile - being abl
 
 Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
 
-Create client: (1 hour)
+Create client:
 Set up a React project with necessary routes and boilerplate pages.
 
-Create server: (1 hour)
+Create server:
 Express project with routing and placeholder 200 responses.
 
-Set up database: (3 hour)
+Set up database:
 Create database schema for movies, series, comments, and user profiles(watchlist).
-Implement basic API endpoints: (3 hour)
+Implement basic API endpoints:
 Create API endpoints for fetching movies and series.
 
-Feature - Explore movies and series: (3 hour)
+Feature - Explore movies and series:
 Develop functionality for browsing and viewing movies and series.
 Create API endpoints for fetching individual movies and series.
 
-Feature - Watchlist: (3 hour)
+Feature - Watchlist:
 Add functionality to allow users to add movies and series to their watchlist.
 Implement watchlist functionality and API endpoint for fetching the user's watchlist.
 
-Feature - User comments: (3 hour)
+Feature - User comments:
 Develop functionality for users to post reviews on movies and series.
 Create API endpoints for fetching reviews for individual movies and series, and posting reviews.
 
@@ -304,7 +329,7 @@ Feature - Random movie/series generator: (nice to have)
 Implement functionality to generate random movie/series recommendations for users.
 Create API endpoint for generating random recommendations.
 
-Bug fixes and testing: (3+ hour)
+Bug fixes and testing:
 Address any bugs discovered during testing.
 Conduct thorough testing to ensure all features work as expected.
 

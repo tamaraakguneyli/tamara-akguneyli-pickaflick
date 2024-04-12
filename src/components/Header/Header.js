@@ -35,8 +35,7 @@ export default function Header({ logOut, username }) {
           >
             PROFILE
           </Link>
-
-          <h1 className="header__page">RANDOM SHUFFLE</h1>
+          <p></p>
         </div>
         <div className="header__account">
           <img className="header__user-icon" src={userIcon} alt="user icon" />

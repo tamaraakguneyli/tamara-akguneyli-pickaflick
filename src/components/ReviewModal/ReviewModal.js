@@ -22,9 +22,9 @@ export default function ReviewModal({
       if (inHomePage) {
         request = `http://localhost:8080/reviews/${media.id}?api_id=${media.id}`;
       } else {
-        request = `http://localhost:8080/reviews/${media.id}`;
+        request = `http://localhost:8080/reviews/${media.id}/users`;
       }
-
+      console.log(request);
       const response = await axios.get(request);
       setReviewList(response.data);
       setNoReviews(response.data.length === 0);
