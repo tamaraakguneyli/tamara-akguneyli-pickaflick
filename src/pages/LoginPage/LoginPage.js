@@ -13,13 +13,10 @@ export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/pickaflix/login",
-        {
-          username: event.target.username.value,
-          password: event.target.password.value,
-        }
-      );
+      const response = await axios.post("http://localhost:8080/user/login", {
+        username: event.target.username.value,
+        password: event.target.password.value,
+      });
 
       localStorage.setItem("token", response.data.token);
 

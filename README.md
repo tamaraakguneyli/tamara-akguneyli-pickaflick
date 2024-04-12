@@ -1,3 +1,46 @@
+# PickaFlix Back End API
+
+To get a local copy of this project up and running, follow these steps.
+
+### Prerequisites
+
+Before you begin, ensure you have Node.js and npm installed on your machine.
+
+- **Node.js**: [Download and Install Node.js](https://nodejs.org/en/download/)
+- **npm**: npm is included with Node.js installation.
+
+### Installation
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflix.git
+   ```
+
+2. Navigate into the project directory:
+
+   ```
+   cd tamara-akguneyli-pickaflix
+   ```
+
+3. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+### Basic .env set-up
+
+Please use `.env.sample` as reference for building up your `.env` file locally. Make sure you provide an `API_KEY` in your `.env` file which is the same as the api key you have used in the backend.
+
+### Running the App
+
+Once you have installed all dependencies and set up the environment variables, you can start the development server.
+
+```
+npm start
+```
+
 # Project Title
 
 Pick a Flick
@@ -42,6 +85,7 @@ List technologies that will be used in your app, including any libraries to save
   - react
   - react-router
   - axios
+    -modal
 - Server libraries:
   - knex
   - express
@@ -81,7 +125,7 @@ This is a nice to have page where it will generate a rnadom movie/series for you
 
 Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
 
-![](mysql-diagram.png)
+![](pickaflix-database.png)
 
 ### Endpoints
 
@@ -197,99 +241,6 @@ GET /trending/tv/day (get top 3 trending movies from today)
             "vote_average": 7.231,
             "vote_count": 1044
 
-1. GET /watchlist/:userId
-
-HTTP Method: GET
-Parameters: userId (User ID to fetch the watchlist for a specific user)
-
-Example Response:
-json
-
-[
-{
-"id": 1,
-"title": "Movie Title",
-"overview": "Movie overview...",
-"poster_url": "https://example.com/poster.jpg",
-"release_date": "2024-04-12"
-},
-{
-"id": 2,
-"title": "Another Movie",
-"overview": "Another movie overview...",
-"poster_url": "https://example.com/another-poster.jpg",
-"release_date": "2024-04-15"
-}
-]
-
-2. POST /watchlist
-
-HTTP Method: POST
-Parameters:
-userId (User ID of the user adding the media)
-media (Media object to be added to the watchlist containing title, overview, release_date, poster_url, api_id)
-
-Example Request Body:
-json
-
-{
-"userId": 1,
-"media": {
-"title": "New Movie",
-"overview": "New movie overview...",
-"release_date": "2024-04-20",
-"poster_url": "https://example.com/new-movie.jpg",
-"api_id": 12345
-}
-}
-Example Response:
-json
-
-{
-"message": "Media added to watchlist successfully"
-}
-
-3. PUT /watchlist/:mediaitemId
-
-HTTP Method: PUT
-Parameters: mediaitemId (ID of the media item to be moved back to the watchlist)
-
-Example Response:
-json
-
-{
-"message": "Media moved back to watchlist successfully"
-}
-
-4. PUT /watched/:mediaitemId
-
-HTTP Method: PUT
-Parameters: mediaitemId (ID of the media item to be marked as watched)
-
-Example Response:
-json
-
-{
-"message": "Media marked as watched successfully"
-}
-
-5. GET /watched/:userId
-
-HTTP Method: GET
-Parameters: userId (User ID to fetch the watched media for a specific user)
-Example Response:
-json
-
-[
-{
-"id": 1,
-"title": "Watched Movie",
-"overview": "Watched movie overview...",
-"poster_url": "https://example.com/watched-poster.jpg",
-"release_date": "2024-04-10"
-}
-]
-
 ### Auth
 
 Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
@@ -343,3 +294,7 @@ Your project will be marked based on what you committed to in the above document
 4. Today's movie quote section (updates with a new quote)
 5. Users can have a random movie/series generated for them - this is shown in the random-watch-page/jpg
 6. Search for individual movies/series
+
+### Back End App Repository
+
+[Front End App](https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflick-api)

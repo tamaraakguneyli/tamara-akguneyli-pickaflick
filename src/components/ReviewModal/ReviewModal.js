@@ -11,7 +11,6 @@ export default function ReviewModal({
   inHomePage,
 }) {
   const [reviewList, setReviewList] = useState([]);
-  console.log(reviewList);
   const [newReviewText, setNewReviewText] = useState("");
   const [noReviews, setNoReviews] = useState(false);
 
@@ -20,7 +19,7 @@ export default function ReviewModal({
       let request = "";
 
       if (inHomePage) {
-        request = `http://localhost:8080/reviews/${media.id}?api_id=${media.id}`;
+        request = `http://localhost:8080/reviews/${media.id}?external_api_id=${media.id}`;
       } else {
         request = `http://localhost:8080/reviews/${media.id}/users`;
       }
@@ -129,18 +128,18 @@ export default function ReviewModal({
                   className="form__textarea"
                 />
                 {!hasSubmittedReview && (
-                  <button type="submit" className="modal__close ">
+                  <button type="submit" className="modal__button">
                     Post my Review
                   </button>
                 )}
                 {hasSubmittedReview && (
                   <>
-                    <button type="submit" className="modal__close">
+                    <button type="submit" className="modal__button">
                       Edit my Review
                     </button>
                     <button
                       type="button"
-                      className="modal__close modal__close--reviews"
+                      className="modal__button modal__button--reviews"
                       onClick={deleteReview}
                     >
                       Delete my Review
@@ -151,7 +150,7 @@ export default function ReviewModal({
             )}
             <button
               type="button"
-              className="modal__close"
+              className="modal__button"
               onClick={handleCloseModal}
             >
               Close

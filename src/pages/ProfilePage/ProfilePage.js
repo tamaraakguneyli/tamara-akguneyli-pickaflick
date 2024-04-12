@@ -24,7 +24,7 @@ export default function ProfilePage() {
       }
 
       try {
-        const { data } = await axios.get("http://localhost:8080/pickaflix", {
+        const { data } = await axios.get("http://localhost:8080/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

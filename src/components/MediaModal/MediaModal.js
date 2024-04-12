@@ -151,8 +151,8 @@ export default function MediaModal({
             <button
               className={` ${
                 isProfilePage
-                  ? "modal__close modal__close--hide"
-                  : "modal__close modal__close--home"
+                  ? "modal__button modal__button--hide"
+                  : "modal__button modal__ button--home"
               }`}
               onClick={addToWatchlist}
             >
@@ -168,8 +168,8 @@ export default function MediaModal({
               <button
                 className={` ${
                   isProfilePage
-                    ? "modal__close"
-                    : "modal__close modal__close--hide"
+                    ? "modal__button"
+                    : "modal__button modal__button--hide"
                 }`}
                 onClick={handleMoveToWatched}
               >
@@ -180,8 +180,8 @@ export default function MediaModal({
               <button
                 className={` ${
                   isProfilePage
-                    ? "modal__close"
-                    : "modal__close modal__close--hide"
+                    ? "modal__button"
+                    : "modal__close modal__button--hide"
                 }`}
                 onClick={moveBackToWatchlist}
               >
@@ -192,8 +192,8 @@ export default function MediaModal({
               <button
                 className={` ${
                   isProfilePage
-                    ? "modal__close modal__close--hide"
-                    : "modal__close "
+                    ? "modal__button modal__button--hide"
+                    : "modal__button "
                 }`}
                 onClick={openReviewModal}
               >
@@ -204,15 +204,15 @@ export default function MediaModal({
               <button
                 className={` ${
                   isProfilePage
-                    ? "modal__close"
-                    : "modal__close modal__close--hide"
+                    ? "modal__button"
+                    : "modal__button modal__button--hide"
                 }`}
                 onClick={openReviewModal}
               >
                 Add/Edit my Review
               </button>
             )}
-            <button className="modal__close" onClick={handleCloseModal}>
+            <button className="modal__button" onClick={handleCloseModal}>
               Close
             </button>
           </div>

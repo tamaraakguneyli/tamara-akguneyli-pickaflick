@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/pickaflix/register", {
+      await axios.post("http://localhost:8080/user/register", {
         username: event.target.username.value,
         email: event.target.email.value,
         password: event.target.password.value,
