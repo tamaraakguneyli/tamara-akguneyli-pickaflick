@@ -273,12 +273,4 @@ JWT authentication will be implemented to secure user data and endpoints.
 
 ### Back End App Repository
 
-````
-
-[Front End App](https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflick-api)
-
-```
-
-```
-
-````
+[Front End App Repository](https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflick)
