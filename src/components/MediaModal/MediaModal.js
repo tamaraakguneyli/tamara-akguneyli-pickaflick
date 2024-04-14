@@ -19,7 +19,6 @@ export default function MediaModal({
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [watchlistMessage, setWatchlistMessage] = useState(false);
   const [watchedMessage, setWatchedMessage] = useState(false);
-  const [deletedMessage, setDeletedMessage] = useState(false);
   const [error, setError] = useState(null);
 
   const formattedReleaseDate = new Date(
