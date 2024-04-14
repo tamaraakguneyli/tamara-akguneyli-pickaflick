@@ -43,7 +43,7 @@ My app is designed for a diverse user base consisting of individuals of all diff
 
 1. See top 3 popular movies/series.
 2. Add movies or series to a personalised watchlist.
-3. Post reviews for movies/series.
+3. Post reviews for movies/series (which users can edit/delete)
 
 ## Tech Stack
 
