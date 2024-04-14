@@ -1,45 +1,27 @@
-# PickaFlix Back End API
+# PickaFlix Front End App
 
-To get a local copy of this project up and running, follow these steps.
+## Installation and Setup
 
-### Prerequisites
+### Clone the Repository
 
-Before you begin, ensure you have Node.js and npm installed on your machine.
+git clone https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflix.git
+cd tamara-akguneyli-pickaflix
 
-- **Node.js**: [Download and Install Node.js](https://nodejs.org/en/download/)
-- **npm**: npm is included with Node.js installation.
+### Install Dependencies
 
-### Installation
+Ensure you have Node.js installed. Then, install project dependencies using npm:
 
-1. Clone the repository:
+npm install
 
-   ```
-   git clone https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflix.git
-   ```
+### Basic .env Set-up
 
-2. Navigate into the project directory:
-
-   ```
-   cd tamara-akguneyli-pickaflix
-   ```
-
-3. Install dependencies:
-
-   ```
-   npm install
-   ```
-
-### Basic .env set-up
-
-Please use `.env.sample` as reference for building up your `.env` file locally. Make sure you provide an `API_KEY` in your `.env` file which is the same as the api key you have used in the backend.
+Please use `.env.sample` as a reference for building up your `.env` file locally. Make sure you provide an `API_KEY` in your `.env` file which matches the backend.
 
 ### Running the App
 
 Once you have installed all dependencies and set up the environment variables, you can start the development server.
 
-```
 npm start
-```
 
 # Project Title
 
@@ -47,35 +29,23 @@ Pick a Flick
 
 ## Overview
 
-What is your app? Brief description in a couple of sentences.
-
 My capstone project involves developing a movie and series recommendation platform. Users can explore different suggestions, save films or series to a personalised watchlist for later viewing, and post reviews on different movies/series.
 
 ### Problem
-
-Why is your app needed? Background information around any pain points or other reasons.
 
 My app addresses the challenges users face in navigating the vast array of entertainment options. With overwhelming choices across streaming platforms, users struggle to find content aligned with their preferences. My platform will offer recommendations, watchlist functionality and being able to add your own review to a specific movie/series.
 
 ### User Profile
 
-Who will use your app? How will they use it? Any special considerations that your app must take into account.
-
 My app is designed for a diverse user base consisting of individuals of all different age groups and demographics. Users will utilise the app to discover new content and organise their viewing preferences.
 
 ### Features
 
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
+1. See top 3 popular movies/series.
+2. Add movies or series to a personalized watchlist.
+3. Post reviews for movies/series.
 
-1. Be able to see top 3 popular movies/series.
-2. Users can add movies or series to a personalised watchlist for future viewing.
-3. Users can post reviews from a specific movie/film.
-
-## Implementation
-
-### Tech Stack
-
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
+## Tech Stack
 
 - React
 - MySQL
@@ -90,21 +60,19 @@ List technologies that will be used in your app, including any libraries to save
   - knex
   - express
 
-### APIs
+## APIs
 
-List any external sources of data that will be used in your app.
+- [The Movie Database (TMDB)](https://www.themoviedb.org)
 
-https://www.themoviedb.org
+## Sitemap
 
-### Sitemap
-
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
-
-Shown in the mockups
+- Registration Page
+- Login Page
+- Home Page (to browse and add movies/series)
+- Profile Page (to view watchlist and post reviews)
+- Random Watch Page (for random movie/series generation)
 
 ### Mockups
-
-Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
 Mimic a registation page
 ![](register-page.jpg)
@@ -123,178 +91,193 @@ This is a nice to have page where it will generate a rnadom movie/series for you
 
 ### Data
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
-
 ![](pickaflix-database.png)
 
-### Endpoints
+## Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+### Movie Endpoints
 
-API ENDPOINTS
+#### GET /movie/top_rated
 
-GET movie/top_rated (get all top rated movies)
+Get all top-rated movies.
 
-[
-{
-"id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
-}
-{
-"id": 2,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
-}
-]
-...
-
-GET /movie/:id (get individual movie)
-
-{
-"id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
-}
-
-GET /trending/movie/day (get top 3 trending movies from today)
-
-            "adult": false,
-            "backdrop_path": "/oe7mWkvYhK4PLRNAVSvonzyUXNy.jpg",
-            "id": 359410,
-            "title": "Road House",
-            "original_language": "en",
-            "original_title": "Road House",
-            "overview": "Ex-UFC fighter Dalton takes a job as a bouncer at a Florida Keys roadhouse, only to discover that this paradise is not all it seems.",
-            "poster_path": "/bXi6IQiQDHD00JFio5ZSZOeRSBh.jpg",
-            "media_type": "movie",
-            "genre_ids": [
-                28,
-                53
-            ],
-            "popularity": 3111.068,
-            "release_date": "2024-03-08",
-            "video": false,
-            "vote_average": 7.231,
-            "vote_count": 1044
-
-GET /tv/top_rated (get all top rated series)
+Example Response:
 
 [
 {
 "id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
-}
+"title": "Movie Title",
+"genre": "Action",
+"release_date": "2024-04-12",
+"overview": "Movie overview...",
+"poster_url": "https://example.com/poster.jpg"
+},
 {
 "id": 2,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
+"title": "Another Movie",
+"genre": "Drama",
+"release_date": "2024-04-15",
+"overview": "Another movie overview...",
+"poster_url": "https://example.com/another-poster.jpg"
 }
 ]
-...
 
-GET /tv/:id (get individual series)
+#### GET /movie/:id
+
+Get details of an individual movie by ID.
+
+Example Response:
 
 {
 "id": 1,
-"title": "",
-"genre": "",
-"release_date": "",
-"overview": "",
-"poster_url": ""
+"title": "Movie Title",
+"genre": "Action",
+"release_date": "2024-04-12",
+"overview": "Movie overview...",
+"poster_url": "https://example.com/poster.jpg"
 }
 
-GET /trending/tv/day (get top 3 trending movies from today)
+#### GET /trending/movie/day
 
-            "adult": false,
-            "backdrop_path": "/oe7mWkvYhK4PLRNAVSvonzyUXNy.jpg",
-            "id": 359410,
-            "title": "Road House",
-            "original_language": "en",
-            "original_title": "Road House",
-            "overview": "Ex-UFC fighter Dalton takes a job as a bouncer at a Florida Keys roadhouse, only to discover that this paradise is not all it seems.",
-            "poster_path": "/bXi6IQiQDHD00JFio5ZSZOeRSBh.jpg",
-            "media_type": "movie",
-            "genre_ids": [
-                28,
-                53
-            ],
-            "popularity": 3111.068,
-            "release_date": "2024-03-08",
-            "video": false,
-            "vote_average": 7.231,
-            "vote_count": 1044
+Get top 3 trending movies from today.
 
-### Auth
+Example Response:
 
-Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+{
+"id": 359410,
+"title": "Popular movie",
+"overview": "movie overview....",
+"poster_url": "https://example.com/poster.jpg",
+"release_date": "2024-03-08",
+"genre_ids": [28, 53],
+"popularity": 3111.068,
+"vote_average": 7.231,
+"vote_count": 1044
+}
 
--JWT auth
+#### GET /tv/top_rated
 
-I will have one fake user to mimic the look of having a user profile - being able to log in/out will be added as a nice to have.
+Get all top-rated series.
+
+Example Response:
+
+[
+{
+"id": 1,
+"title": "Series Title",
+"genre": "Drama",
+"release_date": "2024-04-12",
+"overview": "Series overview...",
+"poster_url": "https://example.com/poster.jpg"
+},
+{
+"id": 2,
+"title": "Another Series",
+"genre": "Comedy",
+"release_date": "2024-04-15",
+"overview": "Another series overview...",
+"poster_url": "https://example.com/another-poster.jpg"
+}
+]
+
+#### GET /tv/:id
+
+Get details of an individual series by ID.
+
+Example Response:
+
+{
+"id": 1,
+"title": "Series Title",
+"genre": "Drama",
+"release_date": "2024-04-12",
+"overview": "Series overview...",
+"poster_url": "https://example.com/poster.jpg"
+}
+
+#### GET /trending/tv/day
+
+Get top 3 trending TV shows from today.
+
+Example Response:
+
+{
+"id": 359410,
+"title": "Popular TV Show",
+"overview": "series overview...",
+"poster_url": "https://example.com/poster.jpg",
+"release_date": "2024-03-08",
+"genre_ids": [28, 53],
+"popularity": 3111.068,
+"vote_average": 7.231,
+"vote_count": 1044
+}
+
+Detailed information about the backend API endpoints can be found in the backend repository.
+
+## Authentication
+
+JWT authentication will be implemented to secure user data and endpoints.
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
+### Create Client
 
-Create client:
-Set up a React project with necessary routes and boilerplate pages.
+- Set up a React project with necessary routes and boilerplate pages.
 
-Create server:
-Express project with routing and placeholder 200 responses.
+### Create Server
 
-Set up database:
-Create database schema for movies, series, comments, and user profiles(watchlist).
-Implement basic API endpoints:
-Create API endpoints for fetching movies and series.
+- Initialize an Express project with routing and placeholder 200 responses.
 
-Feature - Explore movies and series:
-Develop functionality for browsing and viewing movies and series.
-Create API endpoints for fetching individual movies and series.
+### Set Up Database
 
-Feature - Watchlist:
-Add functionality to allow users to add movies and series to their watchlist.
-Implement watchlist functionality and API endpoint for fetching the user's watchlist.
+- Design database schema for movies, series, comments, and user profiles (watchlist).
 
-Feature - User comments:
-Develop functionality for users to post reviews on movies and series.
-Create API endpoints for fetching reviews for individual movies and series, and posting reviews.
+### Implement Basic API Endpoints
 
-Feature - Random movie/series generator: (nice to have)
-Implement functionality to generate random movie/series recommendations for users.
-Create API endpoint for generating random recommendations.
+- Create API endpoints for fetching movies and series.
 
-Bug fixes and testing:
-Address any bugs discovered during testing.
-Conduct thorough testing to ensure all features work as expected.
+### Feature - Explore Movies and Series
 
-## Nice-to-haves
+- Develop functionality for browsing and viewing movies and series.
+- Create API endpoints for fetching individual movies and series.
 
-Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
+### Feature - Watchlist
 
-1. Users to be able to like and interact with other users reviews
-2. Implement interactive recommendation features such as quizzes or surveys to gather user preferences and suggest recommendations.
-3. Be able to access the platform on a mobile.
-4. Today's movie quote section (updates with a new quote)
-5. Users can have a random movie/series generated for them - this is shown in the random-watch-page/jpg
-6. Search for individual movies/series
+- Add functionality to allow users to add movies and series to their watchlist.
+- Implement watchlist functionality and API endpoint for fetching the user's watchlist.
+
+### Feature - User Comments
+
+- Develop functionality for users to post reviews on movies and series.
+- Create API endpoints for fetching and posting reviews for individual movies and series.
+
+### Feature - Random Movie/Series Generator (Nice to Have)
+
+- Implement functionality to generate random movie/series recommendations for users.
+- Create API endpoint for generating random recommendations.
+
+### Bug Fixes and Testing
+
+- Address any bugs discovered during testing.
+- Conduct thorough testing to ensure all features work as expected.
+
+## Nice-to-Haves
+
+- Allow users to like and interact with other users' reviews.
+- Implement interactive recommendation features such as quizzes or surveys to gather user preferences and suggest recommendations.
+- Design a mobile-friendly user interface.
+- Include a daily movie quote section.
+- Integrate a random movie/series generator.
+- Enable search functionality for individual movies/series.
 
 ### Back End App Repository
 
+````
+
 [Front End App](https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflick-api)
+
+```
+
+```
+````
