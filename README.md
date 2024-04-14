@@ -75,23 +75,23 @@ My app is designed for a diverse user base consisting of individuals of all diff
 ### Mockups
 
 Mimic a registation page
-![](register-page.jpg)
+![](./mockups/register-page.jpg)
 
 Mimic a login page
-![](login-page.jpg)
+![](./mockups/login-page.jpg)
 
 This page allows you to see all movies/series options, it also shows up to date top 3 movies/series that update on a daily basis. You can also click a button to add speific movies/series to your watchlist on your profile
-![](home-page.jpg)
+![](./mockups/home-page.jpg)
 
 This page allows you to see your watchlist along with adding/viewing reviews to specific movies/series
-![](profile-page.jpg)
+![](./mockups/profile-page.jpg)
 
 This is a nice to have page where it will generate a rnadom movie/series for you
-![](random-watch-page.jpg)
+![](./mockups/random-watch-page.jpg)
 
 ### Data
 
-![](pickaflix-database.png)
+![](./mockups/pickaflix-database.jpg)
 
 ## Endpoints
 
@@ -227,7 +227,7 @@ JWT authentication will be implemented to secure user data and endpoints.
 
 ### Create Server
 
-- Initialize an Express project with routing and placeholder 200 responses.
+- Initialise an Express project with routing and placeholder 200 responses.
 
 ### Set Up Database
 
