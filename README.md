@@ -91,7 +91,7 @@ This is a nice to have page where it will generate a rnadom movie/series for you
 
 ### Data
 
-![](./mockups/pickaflix-database.jpg)
+![](./mockups/pickaflix-database.png)
 
 ## Endpoints
 
