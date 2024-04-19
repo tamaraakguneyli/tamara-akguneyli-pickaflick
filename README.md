@@ -47,18 +47,18 @@ My app is designed for a diverse user base consisting of individuals of all diff
 
 ## Tech Stack
 
-- React
-- MySQL
-- Express
+Frontend (Client-side):
+React
+react-router
+axios
+modal
+Sass
 
-- Client libraries:
-  - react
-  - react-router
-  - axios
-    -modal
-- Server libraries:
-  - knex
-  - express
+Backend (Server-side):
+Node.js
+Express
+MySQL
+Knex.js
 
 ## APIs
 

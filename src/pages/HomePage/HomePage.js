@@ -21,7 +21,10 @@ export default function HomePage() {
   const [topMovies, setTopMovies] = useState(null);
   const [topSeries, setTopSeries] = useState(null);
   const { type, mediaId } = useParams();
-  const [_eachMedia, setEachMedia] = useState(null);
+  const [eachMedia, setEachMedia] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredSeries, setFilteredSeries] = useState([]);
 
   const getMedia = async () => {
     try {
@@ -67,6 +70,7 @@ export default function HomePage() {
 
   useEffect(() => {
     getMedia();
+    setFilteredMovies(getMedia);
   }, []);
 
   useEffect(() => {
@@ -103,6 +107,29 @@ export default function HomePage() {
     setFailedAuth(true);
   };
 
+  const handleSearchChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+  };
+
+  useEffect(() => {
+    if (movies) {
+      const filtered = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm)
+      );
+      setFilteredMovies(filtered);
+    }
+  }, [searchTerm, movies]);
+
+  useEffect(() => {
+    if (series) {
+      const filtered = series.filter((serie) =>
+        serie.name.toLowerCase().includes(searchTerm)
+      );
+      setFilteredSeries(filtered);
+    }
+  }, [searchTerm, series]);
+
   if (failedAuth) {
     return (
       <main>
@@ -133,6 +160,13 @@ export default function HomePage() {
       <Header logOut={handleLogout} username={user.username} />
       <main>
         <div className="layout">
+          <input
+            type="text"
+            placeholder="Search here..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="layout__search-bar"
+          />
           <div className="layout__header">
             <h1 className="layout__title">Movies</h1>
             <img
@@ -141,7 +175,7 @@ export default function HomePage() {
               className="layout__icon"
             />
           </div>
-          <MediaContent media={movies} user={user} />
+          <MediaContent media={filteredMovies} user={user} />
           <div className="layout__header">
             <h1 className="layout__title">Series</h1>
             <img
@@ -150,7 +184,7 @@ export default function HomePage() {
               className="layout__icon"
             />
           </div>
-          <MediaContent media={series} user={user} />
+          <MediaContent media={filteredSeries} user={user} />
         </div>
         <section className="layout__top-media">
           <div className="layout__top-blocks">
