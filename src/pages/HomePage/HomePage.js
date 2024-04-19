@@ -162,7 +162,7 @@ export default function HomePage() {
         <div className="layout">
           <input
             type="text"
-            placeholder="Search here..."
+            placeholder="Click here to search..."
             value={searchTerm}
             onChange={handleSearchChange}
             className="layout__search-bar"
