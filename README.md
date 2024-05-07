@@ -4,8 +4,8 @@
 
 ### Clone the Repository
 
-git clone https://github.com/tamaraakguneyli/tamara-akguneyli-pickaflix.git
-cd tamara-akguneyli-pickaflix
+git clone 
+cd 
 
 ### Install Dependencies
 
