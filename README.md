@@ -1,4 +1,4 @@
-# PickaFlix Front End App
+# PickaFlick Front End App
 
 ## Installation and Setup
 
